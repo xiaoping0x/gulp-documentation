@@ -9,6 +9,7 @@ var File = require('vinyl');
  * @param {string} [format=md] format - one of 'html', 'md', or 'json'
  * @param {Object} options documentation options - the same as given to [documentation](https://github.com/documentationjs/documentation)
  * @param {string} options.filename custom filename for md or json output
+ * @param {function} options.transform custom transformer for file
  * @param {Object} formatterOptions output options - same as given to documentation
  * @param {Object} formatterOptions.name if format is HTML, specifies the name of the project
  * @returns {stream.Transform}
