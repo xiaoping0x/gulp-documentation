@@ -83,7 +83,7 @@ module.exports = function (format, options, formatterOptions) {
     throw new Error('invalid format given: valid options are ' + Object.keys(documentation.formats).join(', '));
   }
   return through2.obj(function document(file, enc, cb) {
-    var source = options.transform ? options.transform(file) ? null;
+    var source = options.transform ? options.transform(file) : null;
     
     files.push(source != null ? {
       source: source, 
@@ -92,7 +92,7 @@ module.exports = function (format, options, formatterOptions) {
   
     cb();
   }, function (cb) {
-    documentation.build(files), options, function(err, comments) {
+    documentation.build(files, options, function(err, comments) {
       formatter(comments, formatterOptions, function (err, output) {
         if (format === 'json' || format === 'md') {
           this.push(new File({
